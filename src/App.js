@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch } from "react-router";
+import { observer } from "mobx-react";
+
+// Components
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
+import CategoryList from "./components/CategoryList";
+
+// Style
+import { GlobalStyle } from "./styles";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Switch>
+        <Route path="/categories/recipes">
+          <NavBar />
+        </Route>
+        <Route path="/categories">
+          <NavBar />
+          <CategoryList />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </>
   );
 }
 
-export default App;
+export default observer(App);
