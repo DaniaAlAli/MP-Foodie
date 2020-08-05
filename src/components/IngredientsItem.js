@@ -1,18 +1,22 @@
 import React from "react";
+import { observer } from "mobx-react";
 
 //Style
 import { ListGroupItemStyled } from "../styles";
 
 //Component
 
-const IngredientsItem = ({ category }) => {
+//Store
+import categoryStore from "../stores/CategoryStore";
+
+const IngredientsItem = ({ ingredient }) => {
+  console.log("Hi");
+  console.log(ingredient);
   return (
     <>
-      <ListGroupItemStyled>
-        <h2>{category.ingredients}</h2>
-      </ListGroupItemStyled>
+      <h1>{ingredient.name}</h1>
     </>
   );
 };
 
-export default IngredientsItem;
+export default observer(IngredientsItem);

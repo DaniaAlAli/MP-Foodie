@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 
 //Components
 import CategoryItem from "./CategoryItem";
-import IngredientsItem from "./IngredientsItem";
+import IngredientList from "./IngredientList";
 import AddButton from "./buttons/AddButton";
 
 //Store
@@ -17,12 +17,6 @@ const CategoryList = () => {
     <CategoryItem category={category} key={category.id} />
   ));
 
-  const Ingredients = categoryStore.categories
-    .filter((category) => category.click === false)
-    .map((category) => (
-      <IngredientsItem category={category} key={category.id} />
-    ));
-
   return (
     <div>
       <div className="row">
@@ -31,7 +25,7 @@ const CategoryList = () => {
         <ListStyled className="col-4">
           <p style={{ textAlign: "center", marginRight: "15px" }}>
             {" "}
-            - Category{" "}
+            - Categories{" "}
           </p>
           {categories}
         </ListStyled>
@@ -40,7 +34,7 @@ const CategoryList = () => {
             {" "}
             - Ingredients
           </p>
-          {Ingredients}
+          <IngredientList />
         </ListStyled>
       </div>
     </div>

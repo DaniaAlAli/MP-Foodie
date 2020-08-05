@@ -12,7 +12,7 @@ const categories = [
     name: "Vegetables",
     slug: "Vegetables",
     click: false,
-    ingredients: "",
+    ingredients: "LEMON, GREEN PEPPER",
     image: "",
   },
   {
