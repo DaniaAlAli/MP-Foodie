@@ -10,10 +10,15 @@ import { ListGroupItemStyled } from "../styles";
 import categoryStore from "../stores/CategoryStore";
 
 const IngredientsItem = ({ ingredient }) => {
-  console.log("Hi");
-  console.log(ingredient);
+  // const chosenIngredients = () => {
+
+  //   categoryStore.ingredients.click = !categoryStore.ingredients.click;
+  //   console.log("HI", categoryStore.ingredients.click);
+  // };
+  console.log("ITEM", ingredient);
   return (
     <>
+      <input type="checkbox" onClick={console.log("HIIIIII")} />{" "}
       <h1>{ingredient.name}</h1>
     </>
   );

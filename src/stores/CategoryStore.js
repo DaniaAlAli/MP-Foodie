@@ -21,11 +21,12 @@ class CategoryStore {
     this.categories.push(newCategory);
   };
 
-  updateCategory = (categoryID) => {
-    const category = this.categories.find(
-      (category) => category.id === +categoryID
+  updateIngredient = (ingredientID) => {
+    const ingredient = this.ingredients.find(
+      (ingredient) => ingredient.id === +ingredientID
     );
-    category.click = !category.click;
+    ingredient.click = !ingredient.click;
+    console.log("STORE", ingredient);
   };
 }
 
