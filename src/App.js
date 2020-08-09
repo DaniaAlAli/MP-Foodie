@@ -6,7 +6,7 @@ import { observer } from "mobx-react";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import CategoryList from "./components/CategoryList";
-
+import RecipeList from "./components/RecipeList";
 // Style
 import { GlobalStyle } from "./styles";
 
@@ -15,8 +15,8 @@ function App() {
     <>
       <GlobalStyle />
       <Switch>
-        <Route path="/categories/recipes">
-          <NavBar />
+        <Route path="/recipes">
+          <RecipeList />
         </Route>
         <Route path="/categories">
           <NavBar />

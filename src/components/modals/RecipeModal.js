@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import AddIngredientList from "../AddIngredientList";
 
 //Style
 import { CreateButtonStyled } from "../../styles";
 
 //Store
-import categoryStore from "../../stores/CategoryStore";
+import recipeStore from "../../stores/RecipeStore";
 
 const customStyles = {
   content: {
@@ -20,27 +21,32 @@ const customStyles = {
   },
 };
 
-const CategoryModal = ({ isOpen, closeModal }) => {
-  const [category, setCategory] = useState({
+const RecipeModal = ({ isOpen, closeModal }) => {
+  const [recipe, setRecipe] = useState({
     name: "",
-    ingredients: "",
+    instruction: "",
+    image: "",
   });
 
   const handleChange = (event) => {
-    const newCategory = {
-      ...category,
+    const newRecipe = {
+      ...recipe,
       [event.target.name]: event.target.value,
     };
-    setCategory(newCategory);
+    console.log("modal", newRecipe);
+    setRecipe(newRecipe);
   };
+  const handleImage = (event) =>
+    setRecipe({ ...recipe, image: event.target.files[0] });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    categoryStore.createCategory(category);
+    recipeStore.createRecipe(recipe);
     closeModal();
-    setCategory({
+    setRecipe({
       name: "",
-      ingredients: "",
+      instruction: "",
+      image: "",
     });
   };
 
@@ -49,7 +55,7 @@ const CategoryModal = ({ isOpen, closeModal }) => {
       isOpen={isOpen}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="New Category"
+      contentLabel="New Recipe"
     >
       <h3
         style={{
@@ -60,7 +66,7 @@ const CategoryModal = ({ isOpen, closeModal }) => {
         }}
       >
         {" "}
-        Add a New Category{" "}
+        Add a New Recipe{" "}
       </h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -71,18 +77,22 @@ const CategoryModal = ({ isOpen, closeModal }) => {
               fontSize: "20px",
             }}
           >
-            Category
+            Recipe
           </label>
           <input
             name="name"
             type="text"
             onChange={handleChange}
             className="form-control"
-            value={category.name}
+            value={recipe.name}
             placeholder="write here"
           />
         </div>
-
+        <div className="form-group">
+          <AddIngredientList from="madal" />
+          <br />
+          <br />
+        </div>
         <div className="form-group">
           <label
             style={{
@@ -91,14 +101,14 @@ const CategoryModal = ({ isOpen, closeModal }) => {
               fontSize: "20px",
             }}
           >
-            ingredients
+            instruction
           </label>
           <input
-            name="ingredients"
+            name="instruction"
             type="text"
             onChange={handleChange}
             className="form-control"
-            value={category.ingredients}
+            value={recipe.instruction}
             placeholder="write here"
           />
         </div>
@@ -111,14 +121,14 @@ const CategoryModal = ({ isOpen, closeModal }) => {
               fontSize: "20px",
             }}
           >
-            Photo
+            photo
           </label>
           <input
             name="image"
-            type="text"
-            onChange={handleChange}
+            type="file"
+            onChange={handleImage}
             className="form-control"
-            value={category.image}
+            placeholder="write here"
           />
         </div>
         <CreateButtonStyled
@@ -130,11 +140,11 @@ const CategoryModal = ({ isOpen, closeModal }) => {
             fontWeight: "bold",
           }}
         >
-          Add Category
+          Add Recipe
         </CreateButtonStyled>
       </form>
     </Modal>
   );
 };
 
-export default CategoryModal;
+export default RecipeModal;

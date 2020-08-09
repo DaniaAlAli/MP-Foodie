@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 //Style
 import { LogoLink, NavStyled, NavItem } from "../styles";
@@ -13,7 +14,7 @@ const NavBar = () => {
         <ul className="navbar-nav mr-auto">
           <NavItem
             className="nav-item "
-            to="categories/recipes"
+            to="/recipes"
             style={{
               margin: 1,
               float: "center",
